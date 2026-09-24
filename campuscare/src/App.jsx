@@ -2,7 +2,15 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Layout } from "./ui/Layout";
+import { RequireAuth } from "./auth/RequireAuth";
+import { Booking } from "./booking/Booking";
+import Login from "./auth/Login";
 
+import { useUserStore } from "./auth/userStore";
+
+const Doctors = lazy(() => import("./doctors/Doctors"));
+const DoctorDetail = lazy(() => import("./doctors/DoctorDetail"));
+const AppointmentHistory = lazy(() => import("./appointments/AppointmentHistory"));
 
 function Home() {
     return (
