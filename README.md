@@ -1,2 +1,2 @@
 # Campus-Care-
-Group based react project
+A responsive student clinic booking application built with React, Vite, and React Router
