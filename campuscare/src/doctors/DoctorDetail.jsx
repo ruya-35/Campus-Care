@@ -7,6 +7,7 @@ function DoctorDetail() {
     const [doctor, setDoctor] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    
     useEffect(() => {
         async function fetchDoctorDetail() {
             try {
