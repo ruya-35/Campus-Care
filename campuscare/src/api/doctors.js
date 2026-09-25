@@ -5,7 +5,6 @@ export async function loadDoctors(department, search) {
 
     return data.filter((doctor) => {
         const matchesDepartment = department === "All" || doctor.department === department;
-
         const docName = doctor.name ? doctor.name.toLowerCase() : "";
         const searchTerm = search ? search.trim().toLowerCase() : "";
         const matchesSearch = docName.includes(searchTerm);
