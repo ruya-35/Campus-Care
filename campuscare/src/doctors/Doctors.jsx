@@ -8,6 +8,7 @@ import { useFetch } from "../hooks/useFetch";
 
 const DEPARTMENTS = ["All", "General", "Dental", "Optometry", "Counseling"];
 
+
 function Doctors() {
     const [searchParams, setSearchParams] = useSearchParams();
     const activeDepartment = searchParams.get("department") || "All";
