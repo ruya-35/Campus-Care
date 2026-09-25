@@ -22,7 +22,9 @@ export function AppointmentHistory() {
                     <li key={item.id} className="cart-item">
                         <div>
                             <strong>Student: {item.studentName}</strong>
-                            <p style={{ margin: "4px 0", fontSize: "13px" }}>Slot: {item.slot} | ID: {item.idNumber}</p>
+                            <p style={{ margin: "4px 0", fontSize: "13px" }}>
+                                Date: {item.date} | Time: {item.time || item.slot} | ID: {item.idNumber}
+                            </p>
                         </div>
                         <button onClick={() => removeAppointment(item.id)} className="remove-btn">Cancel</button>
                     </li>

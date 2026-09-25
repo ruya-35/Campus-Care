@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CalendarPlus } from "lucide-react";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
 import { Layout } from "./ui/Layout";
 import { RequireAuth } from "./auth/RequireAuth";
@@ -14,10 +15,23 @@ const AppointmentHistory = lazy(() => import("./appointments/AppointmentHistory"
 
 function Home() {
     return (
-        <div className="home-page" style={{ textAlign: "center", padding: "30px" }}>
-            <h2>Welcome to CampusCare Clinic</h2>
-            <p>Browse department doctors, view schedules, and book your appointments easily online.</p>
-        </div>
+        <section className="home-hero">
+            <div className="home-hero-copy">
+                <p className="home-eyebrow">Care that fits campus life</p>
+                <h1>Welcome to CampusCare Clinic</h1>
+                <p className="home-hero-description">Accessible, thoughtful healthcare for students and the campus community, from routine checkups to specialist support.</p>
+                <div className="home-hero-actions">
+                    <Link className="header-cta" to="/doctors">
+                        <CalendarPlus aria-hidden="true" size={17} />
+                        Find a Doctor
+                    </Link>
+                    <Link className="hero-secondary-link" to="/appointments">View My Appointments</Link>
+                </div>
+            </div>
+            <div className="home-hero-media">
+                <img src="/images/clinic-hero.jpg" alt="Bright modern clinic reception with a welcoming care team" />
+            </div>
+        </section>
     );
 }
 

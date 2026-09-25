@@ -3,54 +3,54 @@
         "id": 1,
         "name": "Dr. Hana Tadesse",
         "department": "General",
-        "price": 50,
         "description": "General Practitioner & Medical Officer",
         "overview": "Provides routine health checkups, diagnoses common campus illnesses, and manages primary student medical consultations.",
-        "category": "General"
+        "category": "General",
+        "image": "/images/doctor-1.jpg"
     },
     {
         "id": 2,
         "name": "Dr. Dawit Mengistu",
         "department": "Dental",
-        "price": 100,
         "description": "Campus Dentist & Oral Surgeon",
         "overview": "Specializes in routine dental cleanings, cavity fillings, pain management, and emergency oral care for students.",
-        "category": "Dental"
+        "category": "Dental",
+        "image": "/images/doctor-2.jpg"
     },
     {
         "id": 3,
         "name": "Dr. Meron Alemu",
         "department": "Optometry",
-        "price": 80,
         "description": "Optometrist & Vision Specialist",
         "overview": "Offers comprehensive eye examinations, vision screenings, and specialized prescriptions for corrective eyewear.",
-        "category": "Optometry"
+        "category": "Optometry",
+        "image": "/images/doctor-3.jpg"
     },
     {
         "id": 4,
         "name": "Dr. Kassa Yohannes",
         "department": "Counseling",
-        "price": 0,
         "description": "Student Counselor & Mental Health Specialist",
         "overview": "Provides confidential guidance, stress management counseling, academic pressure support, and emotional wellness sessions.",
-        "category": "Counseling"
+        "category": "Counseling",
+        "image": "/images/doctor-4.jpg"
     },
     {
         "id": 5,
         "name": "Dr. Bethlehem Girma",
         "department": "General",
-        "price": 50,
         "description": "General Physician",
         "overview": "Experienced in treating acute infections, handling minor campus injuries, and providing preventative health education.",
-        "category": "General"
+        "category": "General",
+        "image": "/images/doctor-5.jpg"
     },
     {
         "id": 6,
         "name": "Dr. Yared Solomon",
         "department": "Dental",
-        "price": 120,
         "description": "Orthodontic Specialist",
         "overview": "Focuses on advanced teeth alignment, brace adjustments, and specialized structural dental corrections.",
-        "category": "Dental"
+        "category": "Dental",
+        "image": "/images/doctor-6.jpg"
     }
 ]

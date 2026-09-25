@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppointmentStore } from "../appointments/appointmentStore";
 
+const today = new Date().toISOString().split("T")[0];
+
 export function Booking() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -10,14 +12,15 @@ export function Booking() {
     const [form, setForm] = useState({
         studentName: "",
         idNumber: "",
-        slot: "Morning (09:00 AM)",
+        date: "",
+        time: "",
     });
-
-    const validId = /^UGR\/\d{4,5}\/\d{2}$/i.test(form.idNumber) || form.idNumber.length >= 5;
+    const [validationError, setValidationError] = useState("");
 
     function handleChange(e) {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
+        setValidationError("");
     }
 
     function handleSubmit(e) {
@@ -28,12 +31,23 @@ export function Booking() {
             return;
         }
 
+        if (!form.date) {
+            setValidationError("Please select an appointment date.");
+            return;
+        }
+
+        if (!form.time) {
+            setValidationError("Please select an appointment time.");
+            return;
+        }
+
         addAppointment({
             doctorId: id,
             studentName: form.studentName,
             idNumber: form.idNumber,
-            slot: form.slot,
-            date: new Date().toLocaleDateString(),
+            date: form.date,
+            time: form.time,
+            slot: form.time,
         });
 
         alert("Appointment successfully booked!");
@@ -64,14 +78,29 @@ export function Booking() {
             </div>
 
             <div>
-                <label>Select Time Slot:</label>
-                <select name="slot" value={form.slot} onChange={handleChange}>
-                    <option value="Morning (09:00 AM)">Morning (09:00 AM)</option>
-                    <option value="Midday (11:30 AM)">Midday (11:30 AM)</option>
-                    <option value="Afternoon (02:00 PM)">Afternoon (02:00 PM)</option>
-                </select>
+                <label htmlFor="appointment-date">Appointment Date:</label>
+                <input
+                    id="appointment-date"
+                    min={today}
+                    name="date"
+                    onChange={handleChange}
+                    type="date"
+                    value={form.date}
+                />
             </div>
 
+            <div>
+                <label htmlFor="appointment-time">Appointment Time:</label>
+                <input
+                    id="appointment-time"
+                    name="time"
+                    onChange={handleChange}
+                    type="time"
+                    value={form.time}
+                />
+            </div>
+
+            {validationError && <p className="form-error" role="alert">{validationError}</p>}
             <button type="submit">Confirm Booking</button>
         </form>
     );
