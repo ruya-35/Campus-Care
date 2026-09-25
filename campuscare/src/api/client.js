@@ -7,5 +7,6 @@ export async function apiClient(path, options = {}) {
         throw new Error(`Request failed with status ${response.status}.`);
     }
 
+    
     return response.json();
 }
