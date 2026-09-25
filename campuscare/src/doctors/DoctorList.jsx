@@ -5,6 +5,7 @@ export function DoctorList({ doctors }) {
     if (!doctors || doctors.length === 0) {
         return <p className="loading-msg">No doctors found matching criteria.</p>;
     }
+    
 
     return (
         <div className="menu-grid">
