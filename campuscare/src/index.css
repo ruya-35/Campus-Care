@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --primary-color: #2f8f78;
   --primary-dark: #216c5b;
@@ -860,3 +861,642 @@ form button[type="submit"]:hover {
     padding: 1rem 1.25rem;
   }
 }
+=======
+:root {
+  --primary-color: #0284c7; /* Professional medical blue */
+  --primary-dark: #0369a1;
+  --accent-color: #38bdf8;
+  --bg-color: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --danger-color: #ef4444;
+  --success-color: #22c55e;
+  --radius: 12px;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 1;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  color: white;
+  padding: 1.75rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.header h1 + h1 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.header .location {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+.nav-bar {
+  background: var(--card-bg);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.nav-bar a:hover {
+  color: var(--primary-color);
+  background: #f0f9ff;
+}
+
+.nav-bar a.active {
+  color: white;
+  background: var(--primary-color);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.search-container {
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  outline: none;
+  background: var(--card-bg);
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.category-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.category-bar button {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 0.55rem 1.25rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.category-bar button:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.category-bar button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.menu-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px -3px rgb(0 0 0 / 0.1);
+}
+
+.menu-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.menu-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.add-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s;
+  display: block;
+}
+
+.add-btn:hover {
+  background: var(--primary-dark);
+}
+
+.remove-btn {
+  background: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+}
+
+form, .login-page form, .dish-detail-container, .cart-page {
+  background: var(--card-bg);
+  max-width: 550px;
+  margin: 1.5rem auto;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+form h2, .login-page h2, .cart-page h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  font-size: 1.5rem;
+}
+
+form div {
+  margin-bottom: 1.25rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+form input, form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+form input:focus, form select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+form button[type="submit"] {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.85rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+form button[type="submit"]:hover {
+  background: var(--primary-dark);
+}
+
+.cart-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.home-page, .not-found-page {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.home-page h2, .not-found-page h2 {
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+.loading-msg, .error-msg {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.error-msg {
+  color: var(--danger-color);
+}
+
+.doctor-detail-card {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.doctor-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.book-slot-btn {
+    text-decoration: none;
+    text-align: center;
+}
+
+.back-link {
+    align-self: center;
+}
+
+.doctor-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.book-appointment-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* ==========================================
+   BOOKING PAGE
+   ========================================== */
+.booking-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.booking-container {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+}
+
+.booking-doctor-info {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.booking-doctor-info h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.booking-doctor-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 0.25rem;
+}
+
+.booking-doctor-dept {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Booking form — overrides the generic form styling for this context */
+.booking-form {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+}
+
+.booking-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    background: var(--card-bg);
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.booking-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Per-field error styling */
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.field-error {
+    display: block;
+    color: var(--danger-color);
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+    font-weight: 500;
+    animation: fadeInError 0.2s ease;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.booking-form button[type="submit"] {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+    margin-top: 0.75rem;
+}
+
+.booking-form button[type="submit"]:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.booking-form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.booking-back {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.booking-back .back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.booking-back .back-link:hover {
+    color: var(--primary-color);
+}
+
+/* ==========================================
+   CONFIRMATION PAGE
+   ========================================== */
+.confirmation-page {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.confirmation-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.confirmation-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.25rem;
+    background: var(--success-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.confirmation-card h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.confirmation-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.confirmation-details {
+    text-align: left;
+    background: var(--bg-color);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    min-width: 100px;
+}
+
+.detail-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-align: right;
+}
+
+.confirmation-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.confirmation-actions .add-btn {
+    width: 100%;
+    text-decoration: none;
+}
+
+.confirmation-actions .back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.confirmation-actions .back-link:hover {
+    color: var(--primary-color);
+}
+
+.confirmation-not-found {
+    border-left: 4px solid var(--danger-color);
+}
+>>>>>>> eea3f5c3fe5b7913f61c1bc2d5cdd412c2028bc7

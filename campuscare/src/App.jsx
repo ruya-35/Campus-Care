@@ -5,6 +5,7 @@ import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { Layout } from "./ui/Layout";
 import { RequireAuth } from "./auth/RequireAuth";
 import { Booking } from "./booking/Booking";
+import { Confirmation } from "./booking/Confirmation";
 import Login from "./auth/Login";
 
 import { useUserStore } from "./auth/userStore";
@@ -64,6 +65,7 @@ export default function App() {
                                 </RequireAuth>
                             } 
                         />
+                        <Route path="booking/:ref" element={<Confirmation />} />
                         <Route path="appointments" element={<AppointmentHistory />} />
                         <Route path="login" element={<Login />} />
                         <Route path="*" element={<NotFound />} />

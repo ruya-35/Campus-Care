@@ -8,7 +8,7 @@ export const useAppointmentStore = create(
             
             addAppointment: (appointment) =>
                 set((state) => ({
-                    appointments: [...state.appointments, { ...appointment, id: Date.now() }],
+                    appointments: [...state.appointments, { ...appointment, id: appointment.id || Date.now() }],
                 })),
             
             removeAppointment: (id) =>
