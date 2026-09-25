@@ -7,7 +7,6 @@ export function useFetch(asyncFunction, deps) {
 
     useEffect(() => {
         let cancelled = false;
-
         setLoading(true);
         setError(null);
 
