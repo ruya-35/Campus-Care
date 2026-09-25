@@ -1,79 +1,150 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+/**
+ * Booking.jsx — Owner of the booking flow.
+ *
+ * Responsibilities:
+ * 1. Read :id from the route to know which doctor is being booked
+ * 2. Fetch that doctor's info to display context
+ * 3. Own the form state object
+ * 4. On submit: validate → if valid, save to appointments store → navigate to confirmation
+ * 5. Disable submit while the operation is in progress (prevents double-click)
+ */
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useAppointmentStore } from "../appointments/appointmentStore";
+import { BookingForm } from "./BookingForm";
+import { validateBooking } from "./validate";
+
+const INITIAL_FORM = {
+    studentName: "",
+    idNumber: "",
+    date: "",
+    slot: "",
+    reason: "",
+};
 
 export function Booking() {
     const { id } = useParams();
     const navigate = useNavigate();
     const addAppointment = useAppointmentStore((state) => state.addAppointment);
 
-    const [form, setForm] = useState({
-        studentName: "",
-        idNumber: "",
-        slot: "Morning (09:00 AM)",
-    });
+    // --- Doctor fetch (for display context) ---
+    const [doctor, setDoctor] = useState(null);
+    const [doctorLoading, setDoctorLoading] = useState(true);
 
-    const validId = /^UGR\/\d{4,5}\/\d{2}$/i.test(form.idNumber) || form.idNumber.length >= 5;
+    useEffect(() => {
+        let cancelled = false;
+
+        async function fetchDoctor() {
+            try {
+                const res = await fetch("/Doctors.json");
+                if (!res.ok) throw new Error("Failed to load doctors.");
+                const doctors = await res.json();
+                const found = doctors.find((d) => d.id === Number(id));
+                if (!cancelled) setDoctor(found || null);
+            } catch (err) {
+                console.error("Error fetching doctor for booking:", err);
+            } finally {
+                if (!cancelled) setDoctorLoading(false);
+            }
+        }
+
+        fetchDoctor();
+        return () => { cancelled = true; };
+    }, [id]);
+
+    // --- Form state ---
+    const [form, setForm] = useState(INITIAL_FORM);
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
 
     function handleChange(e) {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
+        // Clear the specific field error as the user types
+        if (errors[name]) {
+            setErrors((prev) => {
+                const next = { ...prev };
+                delete next[name];
+                return next;
+            });
+        }
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        
-        if (!form.studentName.trim() || !form.idNumber.trim()) {
-            alert("Please fill out all booking fields.");
-            return;
+
+        // Validate
+        const validationErrors = validateBooking(form);
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return; // Don't submit — no request sent
         }
 
-        addAppointment({
-            doctorId: id,
-            studentName: form.studentName,
-            idNumber: form.idNumber,
-            slot: form.slot,
-            date: new Date().toLocaleDateString(),
-        });
+        // Prevent double-click
+        setSubmitting(true);
 
-        alert("Appointment successfully booked!");
-        navigate("/appointments");
+        // Build the appointment record
+        const appointmentId = Date.now();
+        const appointment = {
+            id: appointmentId,
+            doctorId: id,
+            doctorName: doctor?.name || `Doctor #${id}`,
+            department: doctor?.department || "",
+            studentName: form.studentName.trim(),
+            idNumber: form.idNumber.trim(),
+            date: form.date,
+            slot: form.slot,
+            reason: form.reason.trim(),
+        };
+
+        // Save to shared store
+        addAppointment(appointment);
+
+        // Navigate to the confirmation screen
+        navigate(`/booking/${appointmentId}`, { replace: true });
+    }
+
+    // --- Render ---
+    if (doctorLoading) {
+        return <p className="loading-msg">Loading booking page…</p>;
+    }
+
+    if (!doctor) {
+        return (
+            <div className="booking-page">
+                <div className="booking-container">
+                    <h2>Doctor Not Found</h2>
+                    <p>No doctor found with ID <strong>{id}</strong>.</p>
+                    <Link to="/doctors" className="back-link">← Back to Doctors</Link>
+                </div>
+            </div>
+        );
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Book Doctor Appointment</h2>
-            <div>
-                <label>Full Name:</label>
-                <input
-                    name="studentName"
-                    value={form.studentName}
-                    onChange={handleChange}
-                    placeholder="Enter your full name"
-                />
-            </div>
-            
-            <div>
-                <label>Student ID Number:</label>
-                <input
-                    name="idNumber"
-                    value={form.idNumber}
-                    onChange={handleChange}
-                    placeholder="e.g. 0000-IBT-0000"
-                />
-            </div>
+        <div className="booking-page">
+            <div className="booking-container">
+                {/* Doctor context header */}
+                <div className="booking-doctor-info">
+                    <h2>Book Appointment</h2>
+                    <p className="booking-doctor-name">{doctor.name}</p>
+                    <p className="booking-doctor-dept">{doctor.department} · {doctor.description}</p>
+                </div>
 
-            <div>
-                <label>Select Time Slot:</label>
-                <select name="slot" value={form.slot} onChange={handleChange}>
-                    <option value="Morning (09:00 AM)">Morning (09:00 AM)</option>
-                    <option value="Midday (11:30 AM)">Midday (11:30 AM)</option>
-                    <option value="Afternoon (02:00 PM)">Afternoon (02:00 PM)</option>
-                </select>
-            </div>
+                {/* The form itself — presentational, driven by props */}
+                <BookingForm
+                    values={form}
+                    errors={errors}
+                    onChange={handleChange}
+                    onSubmit={handleSubmit}
+                    submitting={submitting}
+                />
 
-            <button type="submit">Confirm Booking</button>
-        </form>
+                <div className="booking-back">
+                    <Link to={`/doctors/${id}`} className="back-link">← Back to Doctor Profile</Link>
+                </div>
+            </div>
+        </div>
     );
 }
 
