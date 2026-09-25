@@ -9,6 +9,7 @@ const navigationItems = [
     { label: "My Appointments", to: "/appointments", icon: CalendarDays },
 ];
 
+
 export function Layout() {
     const [menuOpen, setMenuOpen] = useState(false);
     const user = useUserStore((state) => state.user);
