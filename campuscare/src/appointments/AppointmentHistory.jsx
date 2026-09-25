@@ -14,6 +14,7 @@ export function AppointmentHistory() {
         );
     }
 
+    
     return (
         <div className="cart-page" style={{ maxWidth: "600px", margin: "20px auto" }}>
             <h2>Your Appointments</h2>
